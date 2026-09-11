@@ -1,94 +1,154 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
+import GlassSurface from '@/components/GlassSurface';
 import BrandMark from '@/components/BrandMark';
 import SpideyCard from '@/components/SpideyCard';
 
 export default function StylePreviewPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ambientTint, setAmbientTint] = useState('rgba(0,0,0,0)');
+
   return (
-    <main className="min-h-screen relative bg-[#1c5c96] flex flex-col items-center py-8 scanlines overflow-hidden">
+    <main 
+      className="min-h-screen relative bg-[#1c5c96] flex flex-col items-center py-24 scanlines overflow-x-hidden"
+      style={{ '--ambient-tint': ambientTint }}
+    >
       
-      {/* Top Logo Area */}
-      <div className="text-center mb-6 z-10 flex flex-col items-center">
-        <h1 className="text-6xl md:text-8xl font-display text-transparent bg-clip-text bg-gradient-to-b from-red-500 to-red-700 drop-shadow-[0_4px_2px_rgba(0,0,0,0.8)] tracking-tighter" style={{ WebkitTextStroke: '2px #000' }}>
-          SIDDHANT
-        </h1>
-        <h2 className="text-tracker-yellow font-pixel text-lg md:text-xl tracking-widest mt-2 uppercase drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-          The Web Weaver
-        </h2>
-      </div>
+      {/* 1. NAV Variant */}
+      <GlassSurface variant="nav">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <BrandMark className="w-8 h-8 text-tracker-cyan" />
+            <span className="font-pixel tracking-widest text-white">WEB_OS</span>
+          </div>
+          <div className="flex gap-4 font-terminal text-tracker-cyan">
+            <button className="hover:text-white transition-colors">SYSTEM</button>
+            <button className="hover:text-white transition-colors">MODULES</button>
+            <button className="hover:text-white transition-colors">SETTINGS</button>
+          </div>
+        </div>
+      </GlassSurface>
 
       {/* Main Terminal Frame */}
-      <div className="relative w-[95%] max-w-4xl bg-tracker-bg border-4 border-[#13325c] rounded-sm p-1 z-10 flex-1 min-h-[600px] shadow-[0_0_40px_rgba(0,0,0,0.7)]">
+      <div className="relative w-[95%] max-w-6xl bg-tracker-bg border-4 border-[#13325c] rounded-sm p-1 z-10 shadow-[0_0_40px_rgba(0,0,0,0.7)] mt-12">
         
         {/* Inner Screen */}
-        <div className="relative w-full h-full border-2 border-tracker-border overflow-hidden bg-[#0d2140] p-4 flex flex-col">
+        <div className="relative w-full h-full border-2 border-tracker-border overflow-hidden bg-[#0d2140] p-8 flex flex-col gap-12">
           
           {/* Background Dot-Matrix Spider */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-            <BrandMark className="w-[80%] h-[80%] text-tracker-text" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <BrandMark className="w-[120%] h-[120%] text-tracker-text" />
           </div>
 
-          {/* Interactive Spidey Identity Card (Multiverse Themes) */}
-          <div className="absolute top-[10%] right-[5%] md:right-[10%] z-30 transform md:rotate-2 hover:rotate-0 transition-transform duration-500">
+          {/* Interactive Spidey Identity Card (Multiverse Themes) - FLOATING OVERLAY */}
+          <div className="absolute top-[5%] right-[5%] z-30 transform rotate-3 hover:rotate-0 transition-transform duration-500 animate-pulse" style={{ animationDuration: '6s' }}>
              <SpideyCard />
           </div>
 
-          {/* Rulers (Left side) */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 border-r border-tracker-border/30 flex flex-col items-end py-16 opacity-50 z-10">
-            {Array.from({ length: 40 }).map((_, i) => (
-              <div key={i} className={`h-px bg-tracker-text w-${i % 5 === 0 ? '4' : '2'} mb-2`} />
-            ))}
-          </div>
+          <h1 className="relative z-20 text-4xl font-display text-white border-b-2 border-tracker-cyan pb-2 inline-block">
+            COMPONENT DIAGNOSTICS
+          </h1>
 
-          {/* Header UI */}
-          <div className="flex items-start gap-3 relative z-20 pl-8">
-            <div className="w-16 h-16 border-2 border-tracker-text bg-[#1c385c] flex items-center justify-center shadow-[0_0_10px_rgba(101,158,207,0.5)]">
-              {/* Pixel Spider Logo */}
-              <svg viewBox="0 0 16 16" className="w-10 h-10 text-white fill-current shape-rendering-crispedges">
-                <path d="M4 2h8v12H4z M6 4h4v2H6z M6 8h4v2H6z" />
-                <path d="M2 4h2v2H2z M12 4h2v2h-2z" fill="#tracker-red"/>
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <div className="font-pixel text-2xl text-white tracking-widest drop-shadow-md">WEB_NODE_1</div>
-              <div className="font-terminal text-sm text-tracker-text border-b border-tracker-text/50 uppercase tracking-widest pb-1">Siddhant Track Mark 1</div>
-              <div className="flex gap-2 mt-1">
-                <div className="w-2 h-2 bg-tracker-text animate-ping"></div>
-                <div className="w-2 h-2 bg-tracker-text"></div>
-                <div className="w-2 h-2 border border-tracker-text"></div>
+          <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* 2. CARD Variant (Full vs Flat) */}
+            <div className="space-y-4">
+              <h2 className="font-pixel text-tracker-yellow">variant="card"</h2>
+              <div className="flex flex-col gap-4">
+                <GlassSurface variant="card" tier="full" className="p-6 border border-tracker-cyan/30">
+                  <h3 className="font-terminal text-2xl text-white mb-2">FULL TIER</h3>
+                  <p className="text-tracker-text text-sm">Rich refraction, mouse-tracking specular highlight, thick glass edge.</p>
+                </GlassSurface>
+                <GlassSurface variant="card" tier="flat" className="p-6 border border-tracker-cyan/30">
+                  <h3 className="font-terminal text-2xl text-white mb-2">FLAT TIER</h3>
+                  <p className="text-tracker-text text-sm">Pure CSS blur, static highlights. Used automatically for prefers-reduced-motion.</p>
+                </GlassSurface>
               </div>
             </div>
-            <div className="ml-auto border border-tracker-border p-2 bg-black/20">
-              <div className="w-4 h-px bg-tracker-text mb-1"></div>
-              <div className="w-4 h-px bg-tracker-text mb-1"></div>
-              <div className="w-4 h-px bg-tracker-text"></div>
+
+            {/* 3. BUTTON Variant */}
+            <div className="space-y-4">
+              <h2 className="font-pixel text-tracker-yellow">variant="button"</h2>
+              <div className="flex flex-col items-start gap-4">
+                <GlassSurface variant="button" onClick={() => alert("Primary action clicked")} className="px-6 py-3 font-terminal text-xl text-white border border-tracker-green/50">
+                  <span className="text-tracker-green mr-2">[+]</span> INITIALIZE SEQUENCE
+                </GlassSurface>
+                <GlassSurface variant="button" onClick={() => setIsModalOpen(true)} className="px-6 py-3 font-terminal text-xl text-tracker-cyan border border-tracker-cyan/50">
+                  OPEN SECURE MODAL
+                </GlassSurface>
+              </div>
             </div>
+
+            {/* 4. INPUT Variant */}
+            <div className="space-y-4">
+              <h2 className="font-pixel text-tracker-yellow">variant="input"</h2>
+              <div className="flex flex-col gap-4">
+                <label className="flex flex-col gap-2 font-terminal text-tracker-text">
+                  OVERRIDE KEY
+                  <GlassSurface variant="input" type="password" placeholder="Enter secure key..." />
+                </label>
+                <label className="flex flex-col gap-2 font-terminal text-tracker-text">
+                  DIRECTIVE LOG
+                  <GlassSurface variant="input" as="textarea" rows="3" placeholder="Awaiting input..." className="resize-none py-2" />
+                </label>
+              </div>
+            </div>
+
+            {/* 5. BEZEL Variant (Image/Avatar container) */}
+            <div className="space-y-4">
+              <h2 className="font-pixel text-tracker-yellow">variant="bezel"</h2>
+              <GlassSurface variant="bezel" className="inline-block p-2 bg-black/40">
+                <img src="/pfp.png" alt="Bezel Test" className="w-24 h-24 object-cover" />
+              </GlassSurface>
+              <p className="font-terminal text-sm text-tracker-text max-w-xs">
+                A thin, 1px glass border optimized for image framing and avatars.
+              </p>
+            </div>
+
           </div>
 
-          <div className="flex-1"></div>
+          {/* Ambient Tint Control (Bonus Feature) */}
+          <div className="relative z-20 mt-8 p-6 bg-black/30 border border-white/10 rounded">
+            <h2 className="font-pixel text-tracker-yellow mb-4">AMBIENT TINT OVERRIDE</h2>
+            <div className="flex gap-4">
+              <GlassSurface variant="button" className="px-4 py-2 text-white border border-transparent" onClick={() => setAmbientTint('rgba(0,0,0,0)')}>NONE</GlassSurface>
+              <GlassSurface variant="button" className="px-4 py-2 text-tracker-red border border-tracker-red/30" onClick={() => setAmbientTint('rgba(224,24,44,0.1)')}>CRISIS (RED)</GlassSurface>
+              <GlassSurface variant="button" className="px-4 py-2 text-tracker-green border border-tracker-green/30" onClick={() => setAmbientTint('rgba(116,168,116,0.1)')}>SAFE (GREEN)</GlassSurface>
+            </div>
+            <p className="font-terminal text-tracker-text text-sm mt-2">Applies a global tint to all glass variants reflecting the environment.</p>
+          </div>
 
-          {/* Terminal Boot Sequence */}
-          <div className="relative z-20 font-terminal text-xl md:text-2xl text-tracker-text pl-8 space-y-1 bg-black/40 p-4 rounded border-l-4 border-tracker-cyan inline-block max-w-lg backdrop-blur-sm">
-            <p className="animate-pulse text-white">INITIALIZING WEB-WEAVER OS v4.2.0...</p>
-            <p>BOOTING CORE SERVICES <span className="text-tracker-green">[OK]</span></p>
-            <p>INITIALIZING MAP RENDER PIPELINE...</p>
-            <p className="border-t border-tracker-border/50 pt-1 mt-1">LOADING BASE ASSETS: FRAME UI <span className="text-tracker-green">[OK]</span></p>
-            <p>LOADING BASE ASSETS: PORTFOLIO MODULE <span className="text-tracker-green">[OK]</span></p>
-            <p>STARTING EVENT BUS <span className="text-tracker-green">[OK]</span></p>
-            <p>CALIBRATING GLASS REFRACTION LAYER <span className="text-tracker-green">[OK]</span></p>
-            <p>WARMING IMAGE CACHE...</p>
-            <p>CHECKING GITHUB REPO SYNC <span className="text-tracker-green">[OK]</span></p>
+        </div>
+      </div>
+
+      {/* 7. MODAL Variant */}
+      <GlassSurface 
+        variant="modal" 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        className="p-8 border-t-[4px] border-t-tracker-red border-l-tracker-border border-r-tracker-border border-b-tracker-border"
+      >
+        <div className="flex justify-between items-start mb-6">
+          <h2 id="modal-title" className="font-pixel text-2xl text-white">SECURE DIRECTIVE</h2>
+          <button 
+            onClick={() => setIsModalOpen(false)}
+            className="text-tracker-text hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-tracker-red rounded"
+            aria-label="Close modal"
+          >
+            [X]
+          </button>
+        </div>
+        <div className="font-terminal text-lg text-tracker-text space-y-4">
+          <p>WARNING: Unauthorized access to the multiverse grid detected.</p>
+          <p>This dialog uses the <span className="text-white">variant="modal"</span> property. It features a heavy backdrop blur, a focus trap (simulated), and entrance spring animations.</p>
+          <div className="pt-4 border-t border-white/10 flex justify-end gap-4 mt-8">
+             <GlassSurface variant="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-white border border-tracker-cyan/50">
+               ACKNOWLEDGE
+             </GlassSurface>
           </div>
         </div>
-      </div>
-      
-      {/* Ticker / Footer */}
-      <div className="relative z-10 w-[95%] max-w-4xl mt-4 flex gap-4">
-        <div className="flex-1 bg-[#13325c] border-4 border-[#0d2140] rounded text-white font-pixel p-3 flex items-center justify-between text-sm md:text-base shadow-lg">
-          <span className="text-tracker-red">N X</span>
-          <span className="animate-pulse text-tracker-cyan">LOCATE DEVELOPER SIGNAL</span>
-          <span className="text-tracker-red">&#9632;</span>
-        </div>
-      </div>
+      </GlassSurface>
 
     </main>
   );

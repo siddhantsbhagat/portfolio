@@ -48,7 +48,7 @@ export default function SpideyCard() {
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
       
       {/* Glass Overlay for Holographic Feel */}
-      <GlassSurface className={`h-full !p-0 !border-0 ${theme === 'gwen' ? '!bg-white/20' : ''}`}>
+      <GlassSurface variant="card" tier="full" className={`h-full ${theme === 'gwen' ? '!bg-white/20' : ''}`}>
         <div className="p-5 flex flex-col h-full relative z-10">
           
           {/* Header */}
@@ -66,7 +66,7 @@ export default function SpideyCard() {
           </div>
 
           {/* Profile Picture & Glitch Container */}
-          <div className={`relative w-32 h-32 mx-auto mb-4 border-2 ${current.border} rounded-sm overflow-hidden bg-black/50 p-1`}>
+          <GlassSurface variant="bezel" className={`relative w-32 h-32 mx-auto mb-4 border-2 ${current.border} overflow-hidden bg-black/50`}>
             {/* Scanline over image */}
             <div className="absolute inset-0 scanlines opacity-50 z-10 pointer-events-none"></div>
             <img 
@@ -74,7 +74,7 @@ export default function SpideyCard() {
               alt="Siddhant Avatar" 
               className={`w-full h-full object-cover rounded-sm transition-transform duration-300 hover:scale-110 filter ${theme === 'gwen' ? 'contrast-125' : ''}`}
             />
-          </div>
+          </GlassSurface>
 
           {/* User Details */}
           <div className="text-center space-y-1 mb-4">
