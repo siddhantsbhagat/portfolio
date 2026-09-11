@@ -41,7 +41,7 @@ export default function GlassSurface({ children, className = "" }) {
           <feDisplacementMap
             in="SourceGraphic"
             in2="noise"
-            scale="10"
+            scale="30"
             xChannelSelector="R"
             yChannelSelector="G"
           />
@@ -49,7 +49,7 @@ export default function GlassSurface({ children, className = "" }) {
       </svg>
 
       {/* Base Layer */}
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-xl saturate-[1.8] brightness-110 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-white/5 backdrop-blur-md saturate-[1.8] brightness-110 pointer-events-none z-0" />
 
       {/* Refraction Layer */}
       <div 
