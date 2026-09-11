@@ -42,7 +42,7 @@ export default function StylePreviewPage() {
           </div>
 
           {/* Interactive Spidey Identity Card (Multiverse Themes) - FLOATING OVERLAY */}
-          <div className="absolute top-[5%] right-[5%] z-30 transform rotate-3 hover:rotate-0 transition-transform duration-500 animate-pulse" style={{ animationDuration: '6s' }}>
+          <div className="absolute top-[5%] right-[5%] z-30 transform rotate-3 hover:rotate-0 transition-transform duration-500">
              <SpideyCard />
           </div>
 
@@ -95,16 +95,7 @@ export default function StylePreviewPage() {
               </div>
             </div>
 
-            {/* 5. BEZEL Variant (Image/Avatar container) */}
-            <div className="space-y-4">
-              <h2 className="font-pixel text-tracker-yellow">variant="bezel"</h2>
-              <GlassSurface variant="bezel" className="inline-block p-2 bg-black/40">
-                <img src="/pfp.png" alt="Bezel Test" className="w-24 h-24 object-cover" />
-              </GlassSurface>
-              <p className="font-terminal text-sm text-tracker-text max-w-xs">
-                A thin, 1px glass border optimized for image framing and avatars.
-              </p>
-            </div>
+
 
           </div>
 
