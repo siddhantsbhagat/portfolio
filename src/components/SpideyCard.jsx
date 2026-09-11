@@ -61,51 +61,32 @@ export default function SpideyCard() {
           </GlassSurface>
 
           {/* User Details */}
-          <div className="text-center space-y-1 mb-4">
-            <h2 className="font-display text-2xl uppercase tracking-wider text-white">
+          <div className="text-center mb-3">
+            <h2 className="font-display text-3xl uppercase tracking-wider text-white">
               Siddhant S. Bhagat
             </h2>
-            <div className={`font-terminal text-lg ${current.primary} bg-black/40 inline-block px-2 rounded border border-tracker-cyan/30`}>
-              THE WEB WEAVER
-            </div>
+          </div>
+
+          {/* Bio Text */}
+          <div className="mb-6 text-center px-2">
+             <p className="font-display text-sm md:text-base text-tracker-cyan leading-relaxed border-t border-b border-tracker-cyan/30 py-3 font-medium">
+               Currently in "conceptual phase" | First-year CSE student who reads startup teardowns for fun
+             </p>
           </div>
 
           {/* Bio Data Grid */}
-          <div className="grid grid-cols-3 gap-2 mb-3 font-pixel text-[8px] tracking-widest text-center">
-             <div className="bg-black/40 p-2 rounded border border-white/10 flex flex-col justify-center">
-                <span className="text-tracker-cyan/80 mb-1">DOB</span>
-                <span className="text-white">01.SEP.07</span>
+          <div className="grid grid-cols-3 gap-3 mb-6 text-center">
+             <div className="bg-black/60 p-2.5 rounded border border-white/20 flex flex-col justify-center shadow-inner">
+                <span className="font-pixel text-[9px] text-tracker-cyan/90 tracking-widest mb-1.5 uppercase">DOB</span>
+                <span className="font-display text-sm font-semibold text-white tracking-wide">01.SEP.07</span>
              </div>
-             <div className="bg-black/40 p-2 rounded border border-white/10 flex flex-col justify-center">
-                <span className="text-tracker-cyan/80 mb-1">BLD</span>
-                <span className="text-white">O+</span>
+             <div className="bg-black/60 p-2.5 rounded border border-white/20 flex flex-col justify-center shadow-inner">
+                <span className="font-pixel text-[9px] text-tracker-cyan/90 tracking-widest mb-1.5 uppercase">BLD</span>
+                <span className="font-display text-sm font-semibold text-white tracking-wide">O+</span>
              </div>
-             <div className="bg-black/40 p-2 rounded border border-white/10 flex flex-col justify-center">
-                <span className="text-tracker-cyan/80 mb-1">LOC</span>
-                <span className="text-white">DELHI</span>
-             </div>
-          </div>
-
-          {/* Core Drive */}
-          <div className="mb-4 bg-black/40 p-2.5 rounded border border-tracker-cyan/20">
-             <div className="font-pixel text-[8px] text-tracker-cyan tracking-widest mb-1.5 opacity-80">CORE_DRIVE</div>
-             <div className="font-terminal text-sm text-white leading-tight">
-               "Creativity and the fire of building something."
-             </div>
-          </div>
-
-          <div className="mt-2 flex items-center justify-between mb-4">
-             {/* EKG Heartbeat Line */}
-             <div 
-               className="flex-1 relative h-6 mr-4 overflow-hidden"
-               style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
-             >
-                <svg viewBox="0 0 100 20" fill="none" stroke="currentColor" strokeWidth="1.5" className="absolute inset-0 w-full h-full text-tracker-cyan opacity-80" preserveAspectRatio="none">
-                  <polyline points="0,10 20,10 25,5 30,15 35,2 40,18 45,10 60,10 65,7 70,10 100,10" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-             </div>
-             <div className={`font-pixel text-[10px] ${current.primary} animate-pulse shrink-0`}>
-               VITAL_SYNC
+             <div className="bg-black/60 p-2.5 rounded border border-white/20 flex flex-col justify-center shadow-inner">
+                <span className="font-pixel text-[9px] text-tracker-cyan/90 tracking-widest mb-1.5 uppercase">LOC</span>
+                <span className="font-display text-sm font-semibold text-white tracking-wide">DELHI</span>
              </div>
           </div>
 
