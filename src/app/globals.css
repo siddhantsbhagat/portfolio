@@ -3,21 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0f;
+  --foreground: #f2f2f0;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Use the custom font family set in layout */
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
 }
 
 @layer utilities {
