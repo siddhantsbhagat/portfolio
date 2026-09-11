@@ -1,24 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import GlassSurface from './GlassSurface';
 
-export default function SpideyCard() {
-  const [theme, setTheme] = useState('peter');
-
+export default function SpideyCard({ theme = 'black', setTheme }) {
   const themes = {
-    peter: {
-      bg: 'bg-[#1c5c96]',
-      border: 'border-[#e0182c]', // RED BORDER
-      primary: 'text-[#e0182c]',
-      hoverPrimary: 'hover:text-[#e0182c]',
-      secondary: 'text-white',
-      accent: 'bg-[#e0182c]',
-      glow: 'shadow-[0_0_20px_rgba(224,24,44,0.4)]',
-      name: 'PETER PARKER',
-      universe: 'EARTH-616'
-    },
-    miles: {
+    black: {
       bg: 'bg-[#0a0a0a]',
       border: 'border-[#ff003c]',
       primary: 'text-[#ff003c]',
@@ -29,7 +16,7 @@ export default function SpideyCard() {
       name: 'MILES MORALES',
       universe: 'EARTH-1610'
     },
-    gwen: {
+    white: {
       bg: 'bg-[#f2f2f0]',
       border: 'border-[#ff2a85]',
       primary: 'text-[#ff2a85]',
@@ -42,11 +29,10 @@ export default function SpideyCard() {
     }
   };
 
-  const current = themes[theme];
-  // Determine if we need dark text for contrast
-  const textContrast = theme === 'gwen' ? 'text-black' : 'text-white';
-  const labelContrast = theme === 'gwen' ? 'text-black/70' : 'text-tracker-cyan/90';
-  const boxContrast = theme === 'gwen' ? 'bg-black/5 border-black/10' : 'bg-black/60 border-white/20';
+  const current = themes[theme] || themes.black;
+  const textContrast = theme === 'white' ? 'text-black' : 'text-white';
+  const labelContrast = theme === 'white' ? 'text-black/70' : 'text-tracker-cyan/90';
+  const boxContrast = theme === 'white' ? 'bg-black/5 border-black/10' : 'bg-black/60 border-white/20';
 
   const IconWrapper = ({ children, href, title }) => (
     <a 
@@ -54,7 +40,7 @@ export default function SpideyCard() {
       target="_blank" 
       rel="noopener noreferrer" 
       title={title} 
-      className={`${theme === 'gwen' ? 'text-black/50' : 'text-white/60'} ${current.hoverPrimary} transition-all duration-300 transform hover:scale-125 inline-block`}
+      className={`${theme === 'white' ? 'text-black/50' : 'text-white/60'} ${current.hoverPrimary} transition-all duration-300 transform hover:scale-125 inline-block`}
     >
       {children}
     </a>
@@ -63,21 +49,22 @@ export default function SpideyCard() {
   return (
     <div className={`relative w-80 rounded-lg overflow-hidden transition-all duration-500 ${current.bg} ${current.glow} border-2 ${current.border}`}>
       
-      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
+      <div className={`absolute inset-0 opacity-10 pointer-events-none ${theme === 'white' ? 'text-black' : 'text-white'}`} style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
       
-      <GlassSurface variant="card" tier="full" className={`h-full ${theme === 'gwen' ? '!bg-white/20' : ''}`}>
+      <GlassSurface variant="card" tier="full" className={`h-full ${theme === 'white' ? '!bg-white/20' : ''}`}>
         <div className="p-5 flex flex-col h-full relative z-10">
           
-          <div className="flex justify-between items-start mb-4 border-b pb-2 border-white/20">
+          <div className="flex justify-between items-start mb-4 border-b pb-2 border-current/20">
             <div>
               <div className={`font-pixel text-[10px] ${current.primary} tracking-widest`}>DEVELOPER ID</div>
               <div className={`font-terminal text-sm ${current.secondary}`}>{current.universe}</div>
             </div>
-            <div className="flex gap-1 z-20">
-              <button onClick={() => setTheme('peter')} className={`w-3 h-3 rounded-full bg-[#e0182c] border ${theme === 'peter' ? 'border-white' : 'border-transparent'}`} title="Earth-616"></button>
-              <button onClick={() => setTheme('miles')} className={`w-3 h-3 rounded-full bg-[#0a0a0a] border ${theme === 'miles' ? 'border-[#ff003c]' : 'border-transparent'}`} title="Earth-1610"></button>
-              <button onClick={() => setTheme('gwen')} className={`w-3 h-3 rounded-full bg-[#f2f2f0] border ${theme === 'gwen' ? 'border-[#ff2a85]' : 'border-transparent'}`} title="Earth-65"></button>
-            </div>
+            {setTheme && (
+              <div className="flex gap-2 z-20 items-center">
+                <button onClick={() => setTheme('black')} className={`w-3.5 h-3.5 rounded-full bg-[#0a0a0a] border-2 ${theme === 'black' ? 'border-[#ff003c]' : 'border-black/20'} transition-colors shadow-sm`} title="Black Theme"></button>
+                <button onClick={() => setTheme('white')} className={`w-3.5 h-3.5 rounded-full bg-[#f2f2f0] border-2 ${theme === 'white' ? 'border-[#ff2a85]' : 'border-white/20'} transition-colors shadow-sm`} title="White Theme"></button>
+              </div>
+            )}
           </div>
 
           {/* Profile Picture Container */}
