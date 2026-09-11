@@ -1,5 +1,7 @@
 import { Space_Grotesk, Oswald, VT323, Silkscreen } from "next/font/google";
 import "./globals.css";
+import CursorTrail from "@/components/CursorTrail";
+import CommandPalette from "@/components/CommandPalette";
 
 const fontSans = Space_Grotesk({
   subsets: ["latin"],
@@ -29,10 +31,6 @@ export const metadata = {
   description: "Web-slinger identity design system",
 };
 
-import CursorTrail from "@/components/CursorTrail";
-import CommandPalette from "@/components/CommandPalette";
-import IntroAnimation from "@/components/IntroAnimation";
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -41,9 +39,7 @@ export default function RootLayout({ children }) {
       >
         <CursorTrail />
         <CommandPalette />
-        <IntroAnimation>
-          {children}
-        </IntroAnimation>
+        {children}
       </body>
     </html>
   );
