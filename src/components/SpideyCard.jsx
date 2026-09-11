@@ -1,20 +1,52 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import GlassSurface from './GlassSurface';
 
 export default function SpideyCard() {
-  // Locked into the dark "Miles/Tech" aesthetic for maximum contrast and visibility
-  const current = {
-    bg: 'bg-[#0a0a0f]',
-    border: 'border-tracker-cyan',
-    primary: 'text-tracker-cyan',
-    secondary: 'text-white',
-    accent: 'bg-tracker-cyan',
-    glow: 'shadow-[0_0_25px_rgba(94,234,212,0.15)]',
-    name: 'SIDDHANT',
-    universe: 'NODE-99'
+  const [theme, setTheme] = useState('peter');
+
+  const themes = {
+    peter: {
+      bg: 'bg-[#1c5c96]',
+      border: 'border-[#e0182c]', // RED BORDER
+      primary: 'text-[#e0182c]',
+      hoverPrimary: 'hover:text-[#e0182c]',
+      secondary: 'text-white',
+      accent: 'bg-[#e0182c]',
+      glow: 'shadow-[0_0_20px_rgba(224,24,44,0.4)]',
+      name: 'PETER PARKER',
+      universe: 'EARTH-616'
+    },
+    miles: {
+      bg: 'bg-[#0a0a0a]',
+      border: 'border-[#ff003c]',
+      primary: 'text-[#ff003c]',
+      hoverPrimary: 'hover:text-[#ff003c]',
+      secondary: 'text-[#00f0ff]',
+      accent: 'bg-[#ff003c]',
+      glow: 'shadow-[0_0_20px_rgba(255,0,60,0.4)]',
+      name: 'MILES MORALES',
+      universe: 'EARTH-1610'
+    },
+    gwen: {
+      bg: 'bg-[#f2f2f0]',
+      border: 'border-[#ff2a85]',
+      primary: 'text-[#ff2a85]',
+      hoverPrimary: 'hover:text-[#ff2a85]',
+      secondary: 'text-[#00f0ff]',
+      accent: 'bg-[#00f0ff]',
+      glow: 'shadow-[0_0_20px_rgba(255,42,133,0.4)]',
+      name: 'GWEN STACY',
+      universe: 'EARTH-65'
+    }
   };
+
+  const current = themes[theme];
+  // Determine if we need dark text for contrast
+  const textContrast = theme === 'gwen' ? 'text-black' : 'text-white';
+  const labelContrast = theme === 'gwen' ? 'text-black/70' : 'text-tracker-cyan/90';
+  const boxContrast = theme === 'gwen' ? 'bg-black/5 border-black/10' : 'bg-black/60 border-white/20';
 
   const IconWrapper = ({ children, href, title }) => (
     <a 
@@ -22,7 +54,7 @@ export default function SpideyCard() {
       target="_blank" 
       rel="noopener noreferrer" 
       title={title} 
-      className="text-white/60 hover:text-tracker-cyan transition-all duration-300 transform hover:scale-125 inline-block"
+      className={`${theme === 'gwen' ? 'text-black/50' : 'text-white/60'} ${current.hoverPrimary} transition-all duration-300 transform hover:scale-125 inline-block`}
     >
       {children}
     </a>
@@ -31,23 +63,20 @@ export default function SpideyCard() {
   return (
     <div className={`relative w-80 rounded-lg overflow-hidden transition-all duration-500 ${current.bg} ${current.glow} border-2 ${current.border}`}>
       
-      {/* Background Web Pattern (Subtle) */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
       
-      {/* Glass Overlay for Holographic Feel */}
-      <GlassSurface variant="card" tier="full" className="h-full">
+      <GlassSurface variant="card" tier="full" className={`h-full ${theme === 'gwen' ? '!bg-white/20' : ''}`}>
         <div className="p-5 flex flex-col h-full relative z-10">
           
-          {/* Header */}
           <div className="flex justify-between items-start mb-4 border-b pb-2 border-white/20">
             <div>
               <div className={`font-pixel text-[10px] ${current.primary} tracking-widest`}>DEVELOPER ID</div>
               <div className={`font-terminal text-sm ${current.secondary}`}>{current.universe}</div>
             </div>
-            {/* Status Indicator */}
-            <div className="flex gap-1 z-20 items-center">
-               <div className="w-2 h-2 rounded-full bg-tracker-red animate-pulse"></div>
-               <span className="font-pixel text-[8px] text-tracker-red uppercase tracking-widest">Live</span>
+            <div className="flex gap-1 z-20">
+              <button onClick={() => setTheme('peter')} className={`w-3 h-3 rounded-full bg-[#e0182c] border ${theme === 'peter' ? 'border-white' : 'border-transparent'}`} title="Earth-616"></button>
+              <button onClick={() => setTheme('miles')} className={`w-3 h-3 rounded-full bg-[#0a0a0a] border ${theme === 'miles' ? 'border-[#ff003c]' : 'border-transparent'}`} title="Earth-1610"></button>
+              <button onClick={() => setTheme('gwen')} className={`w-3 h-3 rounded-full bg-[#f2f2f0] border ${theme === 'gwen' ? 'border-[#ff2a85]' : 'border-transparent'}`} title="Earth-65"></button>
             </div>
           </div>
 
@@ -56,37 +85,37 @@ export default function SpideyCard() {
             <img 
               src="/pfp.png" 
               alt="Siddhant Avatar" 
-              className="w-full h-full object-cover rounded-sm transition-transform duration-300 hover:scale-110"
+              className={`w-full h-full object-cover rounded-sm transition-transform duration-300 hover:scale-110 ${theme === 'gwen' ? 'contrast-125' : ''}`}
             />
           </GlassSurface>
 
           {/* User Details */}
           <div className="text-center mb-3">
-            <h2 className="font-display text-3xl uppercase tracking-wider text-white">
+            <h2 className={`font-display text-3xl uppercase tracking-wider ${textContrast}`}>
               Siddhant S. Bhagat
             </h2>
           </div>
 
           {/* Bio Text */}
           <div className="mb-6 text-center px-2">
-             <p className="font-display text-sm md:text-base text-tracker-cyan leading-relaxed border-t border-b border-tracker-cyan/30 py-3 font-medium">
+             <p className={`font-display text-sm md:text-base leading-relaxed border-t border-b py-3 font-medium ${theme === 'gwen' ? 'text-black/80 border-black/20' : 'text-tracker-cyan border-tracker-cyan/30'}`}>
                Currently in "conceptual phase" | First-year CSE student who reads startup teardowns for fun
              </p>
           </div>
 
           {/* Bio Data Grid */}
           <div className="grid grid-cols-3 gap-3 mb-6 text-center">
-             <div className="bg-black/60 p-2.5 rounded border border-white/20 flex flex-col justify-center shadow-inner">
-                <span className="font-pixel text-[9px] text-tracker-cyan/90 tracking-widest mb-1.5 uppercase">DOB</span>
-                <span className="font-display text-sm font-semibold text-white tracking-wide">01.SEP.07</span>
+             <div className={`${boxContrast} p-2.5 rounded flex flex-col justify-center shadow-inner`}>
+                <span className={`font-pixel text-[9px] tracking-widest mb-1.5 uppercase ${labelContrast}`}>DOB</span>
+                <span className={`font-display text-sm font-semibold tracking-wide ${textContrast}`}>01.SEP.07</span>
              </div>
-             <div className="bg-black/60 p-2.5 rounded border border-white/20 flex flex-col justify-center shadow-inner">
-                <span className="font-pixel text-[9px] text-tracker-cyan/90 tracking-widest mb-1.5 uppercase">BLD</span>
-                <span className="font-display text-sm font-semibold text-white tracking-wide">O+</span>
+             <div className={`${boxContrast} p-2.5 rounded flex flex-col justify-center shadow-inner`}>
+                <span className={`font-pixel text-[9px] tracking-widest mb-1.5 uppercase ${labelContrast}`}>BLD</span>
+                <span className={`font-display text-sm font-semibold tracking-wide ${textContrast}`}>O+</span>
              </div>
-             <div className="bg-black/60 p-2.5 rounded border border-white/20 flex flex-col justify-center shadow-inner">
-                <span className="font-pixel text-[9px] text-tracker-cyan/90 tracking-widest mb-1.5 uppercase">LOC</span>
-                <span className="font-display text-sm font-semibold text-white tracking-wide">DELHI</span>
+             <div className={`${boxContrast} p-2.5 rounded flex flex-col justify-center shadow-inner`}>
+                <span className={`font-pixel text-[9px] tracking-widest mb-1.5 uppercase ${labelContrast}`}>LOC</span>
+                <span className={`font-display text-sm font-semibold tracking-wide ${textContrast}`}>DELHI</span>
              </div>
           </div>
 
