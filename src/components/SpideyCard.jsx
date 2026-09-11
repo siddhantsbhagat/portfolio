@@ -70,39 +70,42 @@ export default function SpideyCard() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 gap-2 font-pixel text-[9px] tracking-wider text-white">
-            <div className="bg-black/40 p-2 rounded border border-white/10">
-              <div className={`mb-1 ${current.primary}`}>AGILITY</div>
-              <div className="flex gap-1">
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className="h-1.5 flex-1 bg-white/20"></div>
-              </div>
-            </div>
-            <div className="bg-black/40 p-2 rounded border border-white/10">
-              <div className={`mb-1 ${current.primary}`}>TECH</div>
-              <div className="flex gap-1">
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-                <div className={`h-1.5 flex-1 ${current.accent}`}></div>
-              </div>
-            </div>
+          {/* Bio Data Grid */}
+          <div className="grid grid-cols-3 gap-2 mb-3 font-pixel text-[8px] tracking-widest text-center">
+             <div className="bg-black/40 p-2 rounded border border-white/10 flex flex-col justify-center">
+                <span className="text-tracker-cyan/80 mb-1">DOB</span>
+                <span className="text-white">01.SEP.07</span>
+             </div>
+             <div className="bg-black/40 p-2 rounded border border-white/10 flex flex-col justify-center">
+                <span className="text-tracker-cyan/80 mb-1">BLD</span>
+                <span className="text-white">O+</span>
+             </div>
+             <div className="bg-black/40 p-2 rounded border border-white/10 flex flex-col justify-center">
+                <span className="text-tracker-cyan/80 mb-1">LOC</span>
+                <span className="text-white">DELHI</span>
+             </div>
           </div>
 
-          <div className="mt-4 flex items-center justify-between mb-4">
-             {/* Fake Barcode */}
-             <div className="flex h-6 gap-[2px] opacity-80 mix-blend-overlay">
-                {[...Array(20)].map((_, i) => (
-                  <div key={i} className="bg-white" style={{ width: Math.random() > 0.5 ? '2px' : '4px', opacity: Math.random() }}></div>
-                ))}
+          {/* Core Drive */}
+          <div className="mb-4 bg-black/40 p-2.5 rounded border border-tracker-cyan/20">
+             <div className="font-pixel text-[8px] text-tracker-cyan tracking-widest mb-1.5 opacity-80">CORE_DRIVE</div>
+             <div className="font-terminal text-sm text-white leading-tight">
+               "Creativity and the fire of building something."
              </div>
-             <div className={`font-pixel text-[10px] ${current.primary} animate-pulse`}>
-               AUTHORIZED
+          </div>
+
+          <div className="mt-2 flex items-center justify-between mb-4">
+             {/* EKG Heartbeat Line */}
+             <div 
+               className="flex-1 relative h-6 mr-4 overflow-hidden"
+               style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+             >
+                <svg viewBox="0 0 100 20" fill="none" stroke="currentColor" strokeWidth="1.5" className="absolute inset-0 w-full h-full text-tracker-cyan opacity-80" preserveAspectRatio="none">
+                  <polyline points="0,10 20,10 25,5 30,15 35,2 40,18 45,10 60,10 65,7 70,10 100,10" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+             </div>
+             <div className={`font-pixel text-[10px] ${current.primary} animate-pulse shrink-0`}>
+               VITAL_SYNC
              </div>
           </div>
 
