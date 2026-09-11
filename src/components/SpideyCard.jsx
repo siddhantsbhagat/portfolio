@@ -11,6 +11,7 @@ export default function SpideyCard() {
       bg: 'bg-[#1c5c96]',
       border: 'border-[#e0182c]',
       primary: 'text-[#e0182c]',
+      hoverPrimary: 'hover:text-[#e0182c]',
       secondary: 'text-white',
       accent: 'bg-[#e0182c]',
       glow: 'shadow-[0_0_20px_rgba(224,24,44,0.4)]',
@@ -21,6 +22,7 @@ export default function SpideyCard() {
       bg: 'bg-[#0a0a0a]',
       border: 'border-[#ff003c]',
       primary: 'text-[#ff003c]',
+      hoverPrimary: 'hover:text-[#ff003c]',
       secondary: 'text-[#00f0ff]', // Miles' venom blast / cyan accents
       accent: 'bg-[#ff003c]',
       glow: 'shadow-[0_0_20px_rgba(255,0,60,0.4)]',
@@ -31,6 +33,7 @@ export default function SpideyCard() {
       bg: 'bg-[#f2f2f0]',
       border: 'border-[#ff2a85]',
       primary: 'text-[#ff2a85]',
+      hoverPrimary: 'hover:text-[#ff2a85]',
       secondary: 'text-[#00f0ff]',
       accent: 'bg-[#00f0ff]',
       glow: 'shadow-[0_0_20px_rgba(255,42,133,0.4)]',
@@ -120,6 +123,21 @@ export default function SpideyCard() {
              <div className={`font-pixel text-[10px] ${current.primary} animate-pulse`}>
                AUTHORIZED
              </div>
+          </div>
+
+          {/* Social Links / Comm Channels */}
+          <div className="mt-4 pt-4 border-t border-white/20">
+            <div className={`font-pixel text-[8px] ${current.primary} tracking-widest mb-2 opacity-80`}>
+              COMM_CHANNELS
+            </div>
+            <div className={`flex justify-between items-center font-terminal text-sm ${theme === 'gwen' ? 'text-black' : 'text-tracker-text'}`}>
+              <a href="#" className={`${current.hoverPrimary} transition-colors`} title="Instagram">[IG]</a>
+              <a href="#" className={`${current.hoverPrimary} transition-colors`} title="Twitter/X">[TW]</a>
+              <a href="#" className={`${current.hoverPrimary} transition-colors`} title="GitHub">[GH]</a>
+              <a href="#" className={`${current.hoverPrimary} transition-colors`} title="YouTube">[YT]</a>
+              <a href="#" className={`${current.hoverPrimary} transition-colors`} title="Medium">[MD]</a>
+              <a href="#" className={`${current.hoverPrimary} transition-colors`} title="Email">[@]</a>
+            </div>
           </div>
 
         </div>
