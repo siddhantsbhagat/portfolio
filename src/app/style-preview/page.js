@@ -1,6 +1,6 @@
 import React from 'react';
-import GlassSurface from '@/components/GlassSurface';
 import BrandMark from '@/components/BrandMark';
+import SpideyCard from '@/components/SpideyCard';
 
 export default function StylePreviewPage() {
   return (
@@ -27,32 +27,9 @@ export default function StylePreviewPage() {
             <BrandMark className="w-[80%] h-[80%] text-tracker-text" />
           </div>
 
-          {/* Holographic Liquid Glass Overlay (Showcasing Creativity) */}
-          <div className="absolute top-[20%] right-[10%] w-80 z-30 transform rotate-2 animate-pulse" style={{ animationDuration: '4s' }}>
-            <GlassSurface className="border border-tracker-cyan/30 shadow-[0_0_30px_rgba(101,158,207,0.2)]">
-              <div className="font-pixel text-tracker-yellow mb-4 text-xs tracking-wider">
-                &gt;&gt; IDENTITY_MATCH_FOUND
-              </div>
-              <div className="font-terminal text-white text-2xl leading-relaxed space-y-1">
-                <p className="text-tracker-green flex justify-between"><span>ID:</span> <span>SID-99</span></p>
-                <p className="flex justify-between"><span>ALIAS:</span> <span className="text-tracker-text">Siddhant</span></p>
-                <p className="flex justify-between"><span>CLASS:</span> <span className="text-tracker-text">Full-Stack</span></p>
-                <p className="flex justify-between"><span>SKILL:</span> <span className="text-tracker-text">Web-Weaving</span></p>
-                <p className="flex justify-between items-center mt-2 border-t border-white/20 pt-2">
-                  <span>STATUS:</span> 
-                  <span className="animate-pulse text-tracker-red bg-tracker-red/10 px-2 rounded">ACTIVE</span>
-                </p>
-              </div>
-              
-              {/* Mini target UI inside glass */}
-              <div className="mt-6 flex justify-center opacity-70">
-                <svg viewBox="0 0 100 100" className="w-16 h-16 text-tracker-cyan animate-spin" style={{ animationDuration: '10s' }}>
-                  <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="2" strokeDasharray="10 5" fill="none" />
-                  <circle cx="50" cy="50" r="20" stroke="currentColor" strokeWidth="1" fill="none" />
-                  <path d="M50 0 L50 100 M0 50 L100 50" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-                </svg>
-              </div>
-            </GlassSurface>
+          {/* Interactive Spidey Identity Card (Multiverse Themes) */}
+          <div className="absolute top-[10%] right-[5%] md:right-[10%] z-30 transform md:rotate-2 hover:rotate-0 transition-transform duration-500">
+             <SpideyCard />
           </div>
 
           {/* Rulers (Left side) */}
