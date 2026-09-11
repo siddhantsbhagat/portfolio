@@ -2,6 +2,7 @@ import { Space_Grotesk, Oswald, VT323, Silkscreen } from "next/font/google";
 import "./globals.css";
 import CursorTrail from "@/components/CursorTrail";
 import CommandPalette from "@/components/CommandPalette";
+import GlassNav from "@/components/GlassNav";
 
 const fontSans = Space_Grotesk({
   subsets: ["latin"],
@@ -27,18 +28,19 @@ const fontPixel = Silkscreen({
 });
 
 export const metadata = {
-  title: "Spidey Tracker",
+  title: "Siddhant | Spidey Tracker",
   description: "Web-slinger identity design system",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${fontSans.variable} ${fontDisplay.variable} ${fontTerminal.variable} ${fontPixel.variable} font-sans antialiased bg-tracker-bg text-tracker-text`}
+        className={`${fontSans.variable} ${fontDisplay.variable} ${fontTerminal.variable} ${fontPixel.variable} font-sans antialiased bg-[#050505] text-white min-h-screen bg-spider-pattern`}
       >
         <CursorTrail />
         <CommandPalette />
+        <GlassNav />
         {children}
       </body>
     </html>
