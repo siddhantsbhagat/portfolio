@@ -17,6 +17,7 @@ module.exports = {
         "tracker-bg": "#0f2040",
         "tracker-border": "#285c96",
         "tracker-text": "#659ecf",
+        "tracker-cyan": "#5eead4",
         "tracker-red": "#d94b4b",
         "tracker-green": "#74a874",
         "tracker-yellow": "#eab308",
