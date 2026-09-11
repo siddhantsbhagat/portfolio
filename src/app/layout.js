@@ -29,13 +29,21 @@ export const metadata = {
   description: "Web-slinger identity design system",
 };
 
+import CursorTrail from "@/components/CursorTrail";
+import CommandPalette from "@/components/CommandPalette";
+import IntroAnimation from "@/components/IntroAnimation";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
         className={`${fontSans.variable} ${fontDisplay.variable} ${fontTerminal.variable} ${fontPixel.variable} font-sans antialiased bg-tracker-bg text-tracker-text`}
       >
-        {children}
+        <CursorTrail />
+        <CommandPalette />
+        <IntroAnimation>
+          {children}
+        </IntroAnimation>
       </body>
     </html>
   );

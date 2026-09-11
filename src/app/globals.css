@@ -36,3 +36,34 @@ body {
     text-wrap: balance;
   }
 }
+@layer utilities {
+  .animate-web-trace {
+    animation: web-trace 1s ease-out forwards;
+  }
+  .ring-delay-1 {
+    animation-delay: 0.3s;
+  }
+  .ring-delay-2 {
+    animation-delay: 0.5s;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes web-trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in {
+  animation: fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
