@@ -31,7 +31,7 @@ export default function StylePreviewPage() {
           <div className="absolute top-[20%] right-[10%] w-80 z-30 transform rotate-2 animate-pulse" style={{ animationDuration: '4s' }}>
             <GlassSurface className="border border-tracker-cyan/30 shadow-[0_0_30px_rgba(101,158,207,0.2)]">
               <div className="font-pixel text-tracker-yellow mb-4 text-xs tracking-wider">
-                >> IDENTITY_MATCH_FOUND
+                &gt;&gt; IDENTITY_MATCH_FOUND
               </div>
               <div className="font-terminal text-white text-2xl leading-relaxed space-y-1">
                 <p className="text-tracker-green flex justify-between"><span>ID:</span> <span>SID-99</span></p>
