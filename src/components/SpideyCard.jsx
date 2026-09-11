@@ -17,7 +17,13 @@ export default function SpideyCard() {
   };
 
   const IconWrapper = ({ children, href, title }) => (
-    <a href={href} title={title} className="text-white/60 hover:text-tracker-cyan transition-colors duration-300">
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      title={title} 
+      className="text-white/60 hover:text-tracker-cyan transition-all duration-300 transform hover:scale-125 inline-block"
+    >
       {children}
     </a>
   );
@@ -45,10 +51,8 @@ export default function SpideyCard() {
             </div>
           </div>
 
-          {/* Profile Picture & Glitch Container */}
+          {/* Profile Picture Container */}
           <GlassSurface variant="bezel" className={`relative w-32 h-32 mx-auto mb-4 border-2 ${current.border} overflow-hidden bg-black/50`}>
-            {/* Scanline over image */}
-            <div className="absolute inset-0 scanlines opacity-50 z-10 pointer-events-none"></div>
             <img 
               src="/pfp.png" 
               alt="Siddhant Avatar" 
