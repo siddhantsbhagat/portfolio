@@ -1,38 +1,38 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import GlassSurface from './GlassSurface';
 
-export default function SpideyCard({ theme = 'black', setTheme }) {
-  const themes = {
-    black: {
-      bg: 'bg-[#0a0a0a]',
+export default function SpideyCard({ theme = 'black' }) {
+  const [cardColor, setCardColor] = useState('green'); // green is primary
+
+  const colorConfig = {
+    red: {
       border: 'border-[#ff003c]',
       primary: 'text-[#ff003c]',
       hoverPrimary: 'hover:text-[#ff003c]',
       secondary: 'text-[#00f0ff]',
-      accent: 'bg-[#ff003c]',
-      glow: 'shadow-[0_0_20px_rgba(255,0,60,0.4)]',
-      name: 'MILES MORALES',
+      glow: 'shadow-[0_0_25px_rgba(255,0,60,0.5)]',
       universe: 'EARTH-1610'
     },
-    white: {
-      bg: 'bg-[#f2f2f0]',
-      border: 'border-[#ff2a85]',
-      primary: 'text-[#ff2a85]',
-      hoverPrimary: 'hover:text-[#ff2a85]',
-      secondary: 'text-[#00f0ff]',
-      accent: 'bg-[#00f0ff]',
-      glow: 'shadow-[0_0_20px_rgba(255,42,133,0.4)]',
-      name: 'GWEN STACY',
-      universe: 'EARTH-65'
+    green: {
+      border: 'border-[#39d353]',
+      primary: 'text-[#39d353]',
+      hoverPrimary: 'hover:text-[#39d353]',
+      secondary: 'text-[#40c463]',
+      glow: 'shadow-[0_0_25px_rgba(57,211,83,0.4)] animate-[pulse_3s_ease-in-out_infinite]', // flowing/pulsing effect
+      universe: 'GITHUB-CONTRIBUTOR'
     }
   };
 
-  const current = themes[theme] || themes.black;
-  const textContrast = theme === 'white' ? 'text-black' : 'text-white';
-  const labelContrast = theme === 'white' ? 'text-black/70' : 'text-tracker-cyan/90';
-  const boxContrast = theme === 'white' ? 'bg-black/5 border-black/10' : 'bg-black/60 border-white/20';
+  const current = colorConfig[cardColor];
+  
+  const isWhite = theme === 'white';
+  const bg = isWhite ? 'bg-[#f8f9fa]' : 'bg-[#0a0a0a]';
+  const textContrast = isWhite ? 'text-black' : 'text-white';
+  const labelContrast = isWhite ? 'text-black/70' : 'text-white/60';
+  const boxContrast = isWhite ? 'bg-black/5 border-black/10' : 'bg-black/40 border-white/10';
+  const dotColor = isWhite ? 'bg-black/20 hover:bg-black/40' : 'bg-white/20 hover:bg-white/40';
 
   const IconWrapper = ({ children, href, title }) => (
     <a 
@@ -40,39 +40,47 @@ export default function SpideyCard({ theme = 'black', setTheme }) {
       target="_blank" 
       rel="noopener noreferrer" 
       title={title} 
-      className={`${theme === 'white' ? 'text-black/50' : 'text-white/60'} ${current.hoverPrimary} transition-all duration-300 transform hover:scale-125 inline-block`}
+      className={`${isWhite ? 'text-black/50' : 'text-white/60'} ${current.hoverPrimary} transition-all duration-300 transform hover:scale-125 inline-block`}
     >
       {children}
     </a>
   );
 
   return (
-    <div className={`relative w-80 rounded-lg overflow-hidden transition-all duration-500 ${current.bg} ${current.glow} border-2 ${current.border}`}>
+    <div className={`relative w-80 rounded-lg overflow-hidden transition-all duration-500 ${bg} ${current.glow} border-2 ${current.border}`}>
       
-      <div className={`absolute inset-0 opacity-10 pointer-events-none ${theme === 'white' ? 'text-black' : 'text-white'}`} style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
+      <div className={`absolute inset-0 opacity-[0.03] pointer-events-none ${isWhite ? 'text-black' : 'text-white'}`} style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, currentColor 1px, transparent 1px)', backgroundSize: '8px 8px' }}></div>
       
-      <GlassSurface variant="card" tier="full" className={`h-full ${theme === 'white' ? '!bg-white/20' : ''}`}>
+      <GlassSurface variant="card" tier="full" className={`h-full ${isWhite ? '!bg-white/30' : '!bg-black/40'}`}>
         <div className="p-5 flex flex-col h-full relative z-10">
           
-          <div className="flex justify-between items-start mb-4 border-b pb-2 border-current/20">
+          <div className="flex justify-between items-start mb-4 border-b pb-2 border-current/10">
             <div>
-              <div className={`font-pixel text-[10px] ${current.primary} tracking-widest`}>DEVELOPER ID</div>
-              <div className={`font-terminal text-sm ${current.secondary}`}>{current.universe}</div>
+              <div className={`font-pixel text-[10px] ${current.primary} tracking-widest transition-colors duration-500`}>DEVELOPER ID</div>
+              <div className={`font-terminal text-sm ${current.secondary} transition-colors duration-500`}>{current.universe}</div>
             </div>
-            {setTheme && (
-              <div className="flex gap-2 z-20 items-center">
-                <button onClick={() => setTheme('black')} className={`w-3.5 h-3.5 rounded-full bg-[#0a0a0a] border-2 ${theme === 'black' ? 'border-[#ff003c]' : 'border-black/20'} transition-colors shadow-sm`} title="Black Theme"></button>
-                <button onClick={() => setTheme('white')} className={`w-3.5 h-3.5 rounded-full bg-[#f2f2f0] border-2 ${theme === 'white' ? 'border-[#ff2a85]' : 'border-white/20'} transition-colors shadow-sm`} title="White Theme"></button>
-              </div>
-            )}
+            
+            {/* Minimal Switch Button */}
+            <div className={`flex gap-1.5 z-20 items-center p-1 rounded-full ${isWhite ? 'bg-black/5' : 'bg-white/5'}`}>
+              <button 
+                onClick={() => setCardColor('green')} 
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${cardColor === 'green' ? 'bg-[#39d353] scale-125 shadow-[0_0_8px_#39d353]' : dotColor}`}
+                title="Green Theme"
+              />
+              <button 
+                onClick={() => setCardColor('red')} 
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${cardColor === 'red' ? 'bg-[#ff003c] scale-125 shadow-[0_0_8px_#ff003c]' : dotColor}`}
+                title="Red Theme"
+              />
+            </div>
           </div>
 
           {/* Profile Picture Container */}
-          <GlassSurface variant="bezel" className={`relative w-32 h-32 mx-auto mb-4 border-2 ${current.border} overflow-hidden bg-black/50`}>
+          <GlassSurface variant="bezel" className={`relative w-32 h-32 mx-auto mb-4 border-2 ${current.border} overflow-hidden bg-black/50 transition-colors duration-500`}>
             <img 
               src="/pfp.png" 
               alt="Siddhant Avatar" 
-              className={`w-full h-full object-cover rounded-sm transition-transform duration-300 hover:scale-110 ${theme === 'gwen' ? 'contrast-125' : ''}`}
+              className={`w-full h-full object-cover rounded-sm transition-transform duration-300 hover:scale-110 ${isWhite ? 'contrast-125' : ''}`}
             />
           </GlassSurface>
 
@@ -85,29 +93,29 @@ export default function SpideyCard({ theme = 'black', setTheme }) {
 
           {/* Bio Text */}
           <div className="mb-6 text-center px-2">
-             <p className={`font-display text-sm md:text-base leading-relaxed border-t border-b py-3 font-medium ${theme === 'gwen' ? 'text-black/80 border-black/20' : 'text-tracker-cyan border-tracker-cyan/30'}`}>
+             <p className={`font-display text-sm md:text-base leading-relaxed border-t border-b py-3 font-medium transition-colors duration-500 ${isWhite ? 'text-black/80 border-black/10' : `${current.primary} border-white/10`}`}>
                Currently in "conceptual phase" | First-year CSE student who reads startup teardowns for fun
              </p>
           </div>
 
           {/* Bio Data Grid */}
           <div className="grid grid-cols-3 gap-3 mb-6 text-center">
-             <div className={`${boxContrast} p-2.5 rounded flex flex-col justify-center shadow-inner`}>
+             <div className={`${boxContrast} p-2.5 rounded-lg flex flex-col justify-center shadow-inner`}>
                 <span className={`font-pixel text-[9px] tracking-widest mb-1.5 uppercase ${labelContrast}`}>DOB</span>
                 <span className={`font-display text-sm font-semibold tracking-wide ${textContrast}`}>01.SEP.07</span>
              </div>
-             <div className={`${boxContrast} p-2.5 rounded flex flex-col justify-center shadow-inner`}>
+             <div className={`${boxContrast} p-2.5 rounded-lg flex flex-col justify-center shadow-inner`}>
                 <span className={`font-pixel text-[9px] tracking-widest mb-1.5 uppercase ${labelContrast}`}>BLD</span>
                 <span className={`font-display text-sm font-semibold tracking-wide ${textContrast}`}>O+</span>
              </div>
-             <div className={`${boxContrast} p-2.5 rounded flex flex-col justify-center shadow-inner`}>
+             <div className={`${boxContrast} p-2.5 rounded-lg flex flex-col justify-center shadow-inner`}>
                 <span className={`font-pixel text-[9px] tracking-widest mb-1.5 uppercase ${labelContrast}`}>LOC</span>
                 <span className={`font-display text-sm font-semibold tracking-wide ${textContrast}`}>DELHI</span>
              </div>
           </div>
 
           {/* Social Links / Comm Channels (SVG Outlines) */}
-          <div className="pt-4 border-t border-white/20">
+          <div className="pt-4 border-t border-current/10">
             <div className="flex justify-between items-center px-1">
               {/* X / Twitter */}
               <IconWrapper href="#" title="X">
