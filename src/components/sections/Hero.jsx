@@ -7,6 +7,7 @@ import SpideyCard from "@/components/SpideyCard";
 import { MapPin, Briefcase, GraduationCap } from "lucide-react";
 
 import MiniGame from "@/components/MiniGame";
+import SpotifyWidget from "@/components/SpotifyWidget";
 
 export default function Hero({ theme }) {
   const isWhite = theme === "white";
@@ -55,6 +56,8 @@ export default function Hero({ theme }) {
               </span>
             ))}
           </div>
+
+          <SpotifyWidget theme={theme} />
 
           {/* What I'm building */}
           <div className={`border-t ${divider} pt-6`}>
